@@ -10,7 +10,8 @@ project('com.github.jeysonflores.xpressrService', ['cpp', 'c'],
 executable(
 	meson.project_name(),
 	['src/XpressrService.cpp'],
-  ['src/Adaptors/Regex.h'], 
+  ['src/Adaptors/RegexAdaptor.h'],
+  ['src/Interfaces/RegexInterface.h', 'src/Interfaces/RegexInterface.cpp'], 
   ['src/Utils/Logger.h'], 
 	dependencies: [
 		dependency('sdbus-c++'),

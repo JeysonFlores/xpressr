@@ -1,13 +1,22 @@
-#include "Adaptors/Regex.h"
-#include "Utils/Logger.h"
 #include <iostream>
+#include "Interfaces/RegexInterface.h"
+#include "Utils/Logger.h"
 
 INIT_LOGGER;
 
-// TODO: Almost everything
+// TODO: Put the session's creation inside a Try-Catch statement
 int main(int /*argc*/, char* /*argv*/[])
 {
     LOG(INFO, "Service Started");
-    LOG(INFO, "Requesting name...");
-    LOG(SUCCESS, "Name requested successfully");
+
+    const char* serviceName = "com.github.jeysonflores.xpressrService";
+    auto connection = sdbus::createSessionBusConnection(serviceName);
+
+    LOG(SUCCESS, "Name requested successfully...");
+
+    const char* objectPath = "/com/github/jeysonflores/xpressrService/Regex";
+    RegexInterface server(*connection, objectPath);
+
+    connection->enterEventLoop();
+    LOG(INFO, "Service ended");
 }
