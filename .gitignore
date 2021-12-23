@@ -1,0 +1,5 @@
+build
+builddir
+daemon/build
+daemon/builddir
+.flatpak-builder
