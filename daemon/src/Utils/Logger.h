@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 #define INIT_LOGGER         \
     using namespace Logger; \
