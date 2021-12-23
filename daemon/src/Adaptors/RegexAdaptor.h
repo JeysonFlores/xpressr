@@ -4,6 +4,7 @@
 #include <string>
 #include <tuple>
 
+// Note: Method named GetRegexById commented because the final method it's not implemented yet
 namespace com {
 namespace github {
     namespace jeysonflores {

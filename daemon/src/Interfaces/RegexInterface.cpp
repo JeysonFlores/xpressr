@@ -1,4 +1,4 @@
-// TODO: Implement a way to implement the sdbus::Struct<> template
+// TODO: Implement a way to return the sdbus::Struct<> template
 #include "RegexInterface.h"
 
 RegexInterface::RegexInterface(sdbus::IConnection& connection, std::string objectPath)
