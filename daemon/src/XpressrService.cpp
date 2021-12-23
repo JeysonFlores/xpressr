@@ -4,6 +4,7 @@
 
 INIT_LOGGER;
 
+// TODO: Almost everything
 int main(int /*argc*/, char* /*argv*/[])
 {
     LOG(INFO, "Service Started");
