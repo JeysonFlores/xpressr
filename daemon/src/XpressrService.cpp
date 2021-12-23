@@ -1,6 +1,6 @@
-#include <iostream>
 #include "Interfaces/RegexInterface.h"
 #include "Utils/Logger.h"
+#include <iostream>
 
 INIT_LOGGER;
 
