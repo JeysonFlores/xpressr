@@ -11,7 +11,7 @@ int main(int /*argc*/, char* /*argv*/[])
     auto connection = sdbus::createSessionBusConnection("com.github.jeysonflores.xpressrService");
     LOG(SUCCESS, "Name requested successfully...");
 
-    RegexInterface server(*connection, "/com/github/jeysonflores/xpressrService/Regex");
+    XpressrService::Interfaces::RegexInterface server(*connection, "/com/github/jeysonflores/xpressrService/Regex");
 
     LOG(INFO, "Service Starting...");
     connection->enterEventLoop();
