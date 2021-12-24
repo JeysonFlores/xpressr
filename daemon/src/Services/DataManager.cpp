@@ -1,6 +1,6 @@
 #include "DataManager.h"
 
-XpressrService::Services::DataManager::DataManager(std::string database_path)
+XpressrService::Services::DataManager::DataManager(const char* database_path)
     : connection(database_path)
 {
     std::cout << "DataManager created";

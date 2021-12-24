@@ -8,15 +8,15 @@ project('com.github.jeysonflores.xpressrService', ['cpp', 'c'],
 
 
 executable(
-	meson.project_name(),
-  ['src/XpressrService.cpp'],
-  ['src/Adaptors/Regex.h'],
-  ['src/Interfaces/Regex.h', 'src/Interfaces/Regex.cpp'],
-  ['src/Services/DataManager.h', 'src/Services/DataManager.cpp'],
-  ['src/Utils/Logger.h'], 
-	dependencies: [
-		dependency('sdbus-c++'),
-    dependency('sqlite_modern_cpp'),
-	],
-	install: true
+      meson.project_name(),
+      ['src/XpressrService.cpp'],
+      ['src/Adaptors/Regex.h'],
+      ['src/Interfaces/Regex.h', 'src/Interfaces/Regex.cpp'],
+      ['src/Services/DataManager.h', 'src/Services/DataManager.cpp'],
+      ['src/Utils/Logger.h'], 
+      dependencies: [
+        dependency('sdbus-c++'),
+        dependency('sqlite_modern_cpp'),
+      ],
+      install: true
 )

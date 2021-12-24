@@ -5,7 +5,7 @@ namespace XpressrService {
 namespace Services {
     class DataManager {
     public:
-        DataManager(std::string database_path);
+        DataManager(const char* database_path);
         ~DataManager();
 
     private:
