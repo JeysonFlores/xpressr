@@ -13,7 +13,7 @@ executable(
       ['src/Adaptors/Regex.h'],
       ['src/Interfaces/Regex.h', 'src/Interfaces/Regex.cpp'],
       ['src/Services/DataManager.h', 'src/Services/DataManager.cpp'],
-      ['src/Utils/Logger.h'], 
+      ['src/Utils/Logger.h', 'src/Utils/Logger.cpp'], 
       dependencies: [
         dependency('sdbus-c++'),
         dependency('sqlite_modern_cpp'),

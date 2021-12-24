@@ -2,8 +2,11 @@
 
 #include "../Adaptors/Regex.h"
 #include "../Services/DataManager.h"
+#include "../Utils/Logger.h"
 #include <iostream>
 #include <sdbus-c++/sdbus-c++.h>
+
+INIT_LOGGER;
 
 namespace XpressrService {
 namespace Interfaces {
