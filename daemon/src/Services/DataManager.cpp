@@ -1,6 +1,5 @@
 #include "DataManager.h"
 
-
 /**
     Constructor of DataManager.
     @param database_path the path of the database to connect.
@@ -15,7 +14,6 @@ XpressrService::Services::DataManager::DataManager(const char* database_path)
                         "   example text"
                         ");";
 }
-
 
 XpressrService::Services::DataManager::~DataManager()
 {
