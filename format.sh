@@ -10,6 +10,9 @@ echo "-Formatting Interfaces Adaptors folder..."
 cd Interfaces && clang-format -i -style=WebKit *.cpp *.h && cd ..
 echo "*Done"
 
+echo "-Formatting Services Adaptors folder..."
+cd Services && clang-format -i -style=WebKit *.cpp *.h && cd ..
+echo "*Done"
 
 echo "-Formatting Utils Adaptors folder..."
 cd Utils && clang-format -i -style=WebKit *.h && cd ..
