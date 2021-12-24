@@ -19,9 +19,4 @@ int main(int /*argc*/, char* /*argv*/[])
 
     LOG(INFO, "Service Starting...");
     connection->enterEventLoop();
-
-    LOG(INFO, "Service ended");
-
-    sdbus::Struct<int32_t, std::string, std::string, std::string> user;
-    std::cout << std::get<1>(user).empty() << std::endl;
 }

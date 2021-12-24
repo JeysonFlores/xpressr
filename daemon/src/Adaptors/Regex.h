@@ -4,7 +4,7 @@
 #include <string>
 #include <tuple>
 
-// Note: Method named GetRegexById commented because the final method it's not implemented yet
+//TODO: Implement getAll method
 namespace XpressrService {
 namespace Adaptors {
 
