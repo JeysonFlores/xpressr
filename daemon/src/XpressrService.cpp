@@ -1,7 +1,7 @@
 #include "Interfaces/RegexInterface.h"
 #include "Utils/Logger.h"
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 INIT_LOGGER;
 
