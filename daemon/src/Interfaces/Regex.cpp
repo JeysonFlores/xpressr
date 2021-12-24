@@ -12,6 +12,13 @@ XpressrService::Interfaces::Regex::~Regex()
     unregisterAdaptor();
 }
 
+sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::Interfaces::Regex::GetRegexById(const int32_t& id)
+{
+
+    sdbus::Struct<int32_t, std::string, std::string, std::string> ola;
+    return ola;
+}
+
 bool XpressrService::Interfaces::Regex::SetRegex(const std::string& name, const std::string& regex, const std::string& example)
 {
     std::cout << "Hola :D";

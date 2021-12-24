@@ -2,6 +2,8 @@
 #include "Utils/Logger.h"
 #include <cstdlib>
 #include <iostream>
+#include <tuple>
+#include <type_traits>
 
 INIT_LOGGER;
 
@@ -14,7 +16,10 @@ int main(int /*argc*/, char* /*argv*/[])
     XpressrService::Interfaces::Regex server(*connection, "/com/github/jeysonflores/xpressrService/Regex");
 
     LOG(INFO, "Service Starting...");
-    connection->enterEventLoop();
+    //connection->enterEventLoop();
 
     LOG(INFO, "Service ended");
+
+    sdbus::Struct<int32_t, std::string, std::string, std::string> user;
+    std::cout << std::get<1>(user).empty() << std::endl;
 }

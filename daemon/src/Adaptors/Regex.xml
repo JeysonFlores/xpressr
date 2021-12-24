@@ -3,12 +3,9 @@
 <node name="/com/github/jeysonflores">
     <interface name="com.github.jeysonflores.Regex">
 
-        <!-- TODO: Define a compatible and easy way to encode/decode out type
         <method name="GetRegexes">
-            <arg type="a{isss}" name="regexes" direction="out" />
-            <annotation name="org.freedesktop.DBus.Method.Async" value="server" />
+            <arg type="a(isss)" name="regexes" direction="out" />
         </method> 
-        -->
 
         <method name="GetRegexById">
             <arg type="i" name="id" direction="in" />

@@ -1,6 +1,8 @@
 #include <iostream>
+#include <sdbus-c++/sdbus-c++.h>
 #include <sqlite_modern_cpp.h>
 
+//TODO: Implement query, insert and delete functions
 namespace XpressrService {
 namespace Services {
     class DataManager {
@@ -9,14 +11,14 @@ namespace Services {
         ~DataManager();
 
     private:
-        std::string connection;
-        /*public:
-                void initializeDatabase();
-                void getAll();
-                void getById(int id);
-                void set(std::string name, std::string regex, std::string example);
-                void update(int id, std::string name, std::string regex, std::string example);
-                void remove(int id);*/
+        sqlite::database connection;
+
+    public:
+        //void getAll();
+        sdbus::Struct<int32_t, std::string, std::string, std::string> getById(int id);
+        bool set(std::string name, std::string regex, std::string example);
+        bool update(int id, std::string name, std::string regex, std::string example);
+        bool remove(int id);
     };
 }
 }
