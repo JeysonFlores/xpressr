@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Adaptors/RegexAdaptor.h"
+#include "../Adaptors/Regex.h"
 #include <iostream>
 #include <sdbus-c++/sdbus-c++.h>
 
@@ -8,10 +8,10 @@ namespace XpressrService {
 namespace Interfaces {
 
     // TODO: Define a way to implement the sdbus::Struct<> template
-    class RegexInterface final : public sdbus::AdaptorInterfaces<XpressrService::Adaptors::RegexAdaptor> {
+    class Regex final : public sdbus::AdaptorInterfaces<XpressrService::Adaptors::Regex> {
     public:
-        RegexInterface(sdbus::IConnection& connection, std::string objectPath);
-        ~RegexInterface();
+        Regex(sdbus::IConnection& connection, std::string objectPath);
+        ~Regex();
 
     private:
         //virtual sdbus::Struct<int32_t, std::string, std::string, std::string> GetRegexById(const int32_t& id) override;

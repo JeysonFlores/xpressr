@@ -8,12 +8,12 @@
 namespace XpressrService {
 namespace Adaptors {
 
-    class RegexAdaptor {
+    class Regex {
     public:
         static constexpr const char* INTERFACE_NAME = "com.github.jeysonflores.Regex";
 
     protected:
-        RegexAdaptor(sdbus::IObject& object)
+        Regex(sdbus::IObject& object)
             : object_(object)
         {
             //object_.registerMethod("GetRegexById").onInterface(INTERFACE_NAME).withInputParamNames("id").withOutputParamNames("regex").implementedAs([this](const int32_t& id) { return this->GetRegexById(id); });
@@ -25,7 +25,7 @@ namespace Adaptors {
             object_.registerSignal("RegexDeleted").onInterface(INTERFACE_NAME).withParameters<int32_t>("id");
         }
 
-        ~RegexAdaptor() = default;
+        ~Regex() = default;
 
     public:
         void emitRegexAdded(const int32_t& id, const std::string& name, const std::string& regex, const std::string& example)

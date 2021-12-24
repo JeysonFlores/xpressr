@@ -1,4 +1,4 @@
-#include "Interfaces/RegexInterface.h"
+#include "Interfaces/Regex.h"
 #include "Utils/Logger.h"
 #include <cstdlib>
 #include <iostream>
@@ -11,7 +11,7 @@ int main(int /*argc*/, char* /*argv*/[])
     auto connection = sdbus::createSessionBusConnection("com.github.jeysonflores.xpressrService");
     LOG(SUCCESS, "Name requested successfully...");
 
-    XpressrService::Interfaces::RegexInterface server(*connection, "/com/github/jeysonflores/xpressrService/Regex");
+    XpressrService::Interfaces::Regex server(*connection, "/com/github/jeysonflores/xpressrService/Regex");
 
     LOG(INFO, "Service Starting...");
     connection->enterEventLoop();
