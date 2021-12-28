@@ -63,12 +63,14 @@ sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::Se
 *   @param regex the regex itself.
 *   @param example the example of that regex.
 */
-void XpressrService::Services::DataManager::set(std::string name, std::string regex, std::string example)
+void XpressrService::Services::DataManager::set(int& id, std::string name, std::string regex, std::string example)
 {
     this->connection << "INSERT INTO regexes (id,name,regex,example) VALUES (NULL,?,?,?);"
                      << name
                      << regex
                      << example;
+
+    id = this->connection.last_insert_rowid();
 }
 
 /**

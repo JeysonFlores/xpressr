@@ -67,9 +67,10 @@ sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::In
 bool XpressrService::Interfaces::Regex::SetRegex(const std::string& name, const std::string& regex, const std::string& example)
 {
     LOG(INFO, "SetRegex method called");
-
+    int id;
     try {
-        this->dbManager.set(name, regex, example);
+        this->dbManager.set(id, name, regex, example);
+        this->emitRegexAdded(id, name, regex, example);
         return true;
     } catch (std::exception& e) {
         throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
@@ -93,6 +94,7 @@ bool XpressrService::Interfaces::Regex::UpdateRegex(const int32_t& id, const std
     if (this->dbManager.exists(id)) {
         try {
             this->dbManager.update(id, name, regex, example);
+            this->emitRegexUpdated(id, name, regex, example);
             return true;
         } catch (std::exception& e) {
             throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
@@ -115,6 +117,7 @@ bool XpressrService::Interfaces::Regex::DeleteRegex(const int32_t& id)
     if (this->dbManager.exists(id)) {
         try {
             this->dbManager.remove(id);
+            this->emitRegexDeleted(id);
             return true;
         } catch (std::exception& e) {
             throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
