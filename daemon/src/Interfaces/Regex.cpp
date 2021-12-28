@@ -65,14 +65,21 @@ bool XpressrService::Interfaces::Regex::UpdateRegex(const int32_t& id, const std
     Deletes a Regex according to its id.
     @param id the id of the regex.
     @return a bool flag that indicates if there's error or not.
+    TODO: Improve logic.
 */
 bool XpressrService::Interfaces::Regex::DeleteRegex(const int32_t& id)
 {
     LOG(INFO, "DeleteRegex method called");
-    if (!this->dbManager.remove(id)) {
-        return true;
+    if (this->dbManager.exists(id)) {
+        LOG(INFO, "The given ID exists");
+        if (!this->dbManager.remove(id)) {
+            return true;
+        }
+
+        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", "An error ocurred when deleting the regex");
+        return false;
     }
 
-    LOG(ERROR, "There was an error deleting a Regex");
+    throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", "There's no Regex that matches with the given Id");
     return false;
 }

@@ -108,3 +108,17 @@ bool XpressrService::Services::DataManager::remove(int id)
 
     return error;
 }
+
+/**
+**  Check if a Regex exists by its id given the database_path.
+*   @param id the id of the regex.
+*   @return a bool flag that indicates if the regex exists.
+*/
+bool XpressrService::Services::DataManager::exists(int id)
+{
+    int rows = 0;
+    this->connection << "SELECT COUNT(*) FROM regexes WHERE id = ? ;"
+                     << id
+        >> rows;
+    return rows > 0;
+}
