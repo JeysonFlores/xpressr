@@ -23,6 +23,21 @@ XpressrService::Services::DataManager::~DataManager()
 }
 
 /**
+**  Query all Regexes inside the database.
+*   @return a std::vector with the queried data.
+*/
+std::vector<sdbus::Struct<int32_t, std::string, std::string, std::string>> XpressrService::Services::DataManager::getAll()
+{
+    std::vector<sdbus::Struct<int32_t, std::string, std::string, std::string>> result;
+    this->connection << "SELECT id,name,regex,example FROM regexes ;"
+        >> [&](int32_t id, std::string name, std::string regex, std::string example) {
+              sdbus::Struct<int32_t, std::string, std::string, std::string> row = { id, name, regex, example };
+              result.push_back(row);
+          };
+    return result;
+}
+
+/**
 **  Query a Regex by its id given the databasePath.
 *   @param id the id of the regex.
 *   @return a dbus::Struct (std::tuple) with the queried data.
@@ -94,4 +109,16 @@ bool XpressrService::Services::DataManager::exists(int id)
                      << id
         >> rows;
     return rows > 0;
+}
+
+/**
+**  Counts how many rows are stored in the database.
+*   @return the total amout of rows inside the database.
+*/
+int XpressrService::Services::DataManager::count()
+{
+    int rows = 0;
+    this->connection << "SELECT COUNT(*) FROM regexes;"
+        >> rows;
+    return rows;
 }

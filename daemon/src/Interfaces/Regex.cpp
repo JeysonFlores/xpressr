@@ -23,6 +23,21 @@ XpressrService::Interfaces::Regex::~Regex()
 }
 
 /**
+**  Gets all the Regex.
+*   @return a std::vector with all the regexes.
+*/
+std::vector<sdbus::Struct<int32_t, std::string, std::string, std::string>> XpressrService::Interfaces::Regex::GetRegexes()
+{
+    LOG(INFO, "GetRegexes method called");
+    try {
+        return this->dbManager.getAll();
+    } catch (std::exception& e) {
+        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
+        LOG(ERROR, "There was an error retrieving all Regexes");
+    }
+}
+
+/**
 **  Gets a Regex by its id.
 *   @param id the id of the regex.
 *   @return a dbus::Struct (std::tuple) with the data of that Regex.

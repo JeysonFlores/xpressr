@@ -18,6 +18,7 @@ namespace Interfaces {
         ~Regex();
 
     private:
+        virtual std::vector<sdbus::Struct<int32_t, std::string, std::string, std::string>> GetRegexes() override;
         virtual sdbus::Struct<int32_t, std::string, std::string, std::string> GetRegexById(const int32_t& id) override;
         virtual bool SetRegex(const std::string& name, const std::string& regex, const std::string& example) override;
         virtual bool UpdateRegex(const int32_t& id, const std::string& name, const std::string& regex, const std::string& example) override;
