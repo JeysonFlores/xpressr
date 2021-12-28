@@ -1,11 +1,11 @@
 #include "DataManager.h"
 
 /**
-**  Constructor of DataManager.
-*   @param database_path the path of the database to connect.
+**  Constructor of XpressrService::Services::DataManager.
+*   @param databasePath the path of the database to connect.
 */
-XpressrService::Services::DataManager::DataManager(const char* database_path)
-    : connection(sqlite::database(database_path))
+XpressrService::Services::DataManager::DataManager(const char* databasePath)
+    : connection(sqlite::database(databasePath))
 {
     this->connection << "CREATE table IF NOT EXISTS regexes ("
                         "   id integer primary key autoincrement not null,"
@@ -15,14 +15,17 @@ XpressrService::Services::DataManager::DataManager(const char* database_path)
                         ");";
 }
 
+/**
+**  Destructor of XpressrService::Services::DataManager.
+*/
 XpressrService::Services::DataManager::~DataManager()
 {
 }
 
 /**
-**  Query a Regex by its id given the database_path.
+**  Query a Regex by its id given the databasePath.
 *   @param id the id of the regex.
-*   @return a dbus::Struct (tuple) with the queried data.
+*   @return a dbus::Struct (std::tuple) with the queried data.
 */
 sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::Services::DataManager::getById(int id)
 {
@@ -40,77 +43,47 @@ sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::Se
 }
 
 /**
-**  Inserts a Regex given the database_path.
+**  Inserts a Regex given the databasePath.
 *   @param name the name of the regex.
 *   @param regex the regex itself.
 *   @param example the example of that regex.
-*   @return a bool flag that indicates if there's error or not.
-*   TODO: Change the try-catch here to an upper level
 */
-bool XpressrService::Services::DataManager::set(std::string name, std::string regex, std::string example)
+void XpressrService::Services::DataManager::set(std::string name, std::string regex, std::string example)
 {
-    bool error = false;
-    try {
-        this->connection << "INSERT INTO regexes (id,name,regex,example) VALUES (NULL,?,?,?);"
-                         << name
-                         << regex
-                         << example;
-    } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-        error = true;
-    }
-
-    return error;
+    this->connection << "INSERT INTO regexes (id,name,regex,example) VALUES (NULL,?,?,?);"
+                     << name
+                     << regex
+                     << example;
 }
 
 /**
-**  Updates a Regex given the database_path.
+**  Updates a Regex given the databasePath.
 *   @param name the id of the regex.
 *   @param name the name of the regex.
 *   @param regex the regex itself.
 *   @param example the example of that regex.
-*   @return a bool flag that indicates if there's error or not.
-*   TODO: Change the try-catch here to an upper level
 */
-bool XpressrService::Services::DataManager::update(int id, std::string name, std::string regex, std::string example)
+void XpressrService::Services::DataManager::update(int id, std::string name, std::string regex, std::string example)
 {
-    bool error = false;
-    try {
-        this->connection << "UPDATE regexes SET name = ?, regex = ?, example = ? WHERE id = ? ;"
-                         << name
-                         << regex
-                         << example
-                         << id;
-    } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-        error = true;
-    }
-
-    return error;
+    this->connection << "UPDATE regexes SET name = ?, regex = ?, example = ? WHERE id = ? ;"
+                     << name
+                     << regex
+                     << example
+                     << id;
 }
 
 /**
-**  Query a Regex by its id given the database_path.
+**  Query a Regex by its id given the databasePath.
 *   @param id the id of the regex.
-*   @return a bool flag that indicates if there's error or not.
-*   TODO: Change the try-catch here to an upper level
 */
-bool XpressrService::Services::DataManager::remove(int id)
+void XpressrService::Services::DataManager::remove(int id)
 {
-    bool error = false;
-    try {
-        this->connection << "DELETE FROM regexes WHERE id = ? ;"
-                         << id;
-    } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-        error = true;
-    }
-
-    return error;
+    this->connection << "DELETE FROM regexes WHERE id = ? ;"
+                     << id;
 }
 
 /**
-**  Check if a Regex exists by its id given the database_path.
+**  Check if a Regex exists by its id given the databasePath.
 *   @param id the id of the regex.
 *   @return a bool flag that indicates if the regex exists.
 */

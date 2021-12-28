@@ -1,6 +1,12 @@
 // TODO: Implement a way to return all the Regexes template
 #include "Regex.h"
 
+/**
+**  Constructor of XpressrService::Interfaces::Regex.
+*   @param connection the D-Bus instance connection.
+*   @param objectPath the path for the object.
+*   @param dbm DataManager instance to perform database operations.
+*/
 XpressrService::Interfaces::Regex::Regex(sdbus::IConnection& connection, std::string objectPath, XpressrService::Services::DataManager dbm)
     : AdaptorInterfaces(connection, std::move(objectPath))
     , dbManager(dbm)
@@ -8,76 +14,97 @@ XpressrService::Interfaces::Regex::Regex(sdbus::IConnection& connection, std::st
     registerAdaptor();
 }
 
+/**
+**  Destructor of XpressrService::Interfaces::Regex.
+*/
 XpressrService::Interfaces::Regex::~Regex()
 {
     unregisterAdaptor();
 }
 
 /**
-    Gets a Regex by its id.
-    @param id the id of the regex.
-    @return a dbus::Struct (tuple) with the data of that Regex.
+**  Gets a Regex by its id.
+*   @param id the id of the regex.
+*   @return a dbus::Struct (std::tuple) with the data of that Regex.
 */
 sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::Interfaces::Regex::GetRegexById(const int32_t& id)
 {
     LOG(INFO, "GetRegexById method called");
-    return this->dbManager.getById(id);
+    if (this->dbManager.exists(id)) {
+        try {
+            return this->dbManager.getById(id);
+        } catch (std::exception& e) {
+            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
+            LOG(ERROR, "There was an error retrieving a Regex");
+        }
+    }
+
+    throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", "There's no Regex that matches with the given Id");
 }
 
 /**
-    Inserts a new Regex.
-    @param name the name of the regex.
-    @param regex the regex itself.
-    @param example the example of that regex.
-    @return a bool flag that indicates if there's error or not.
+**  Inserts a new Regex.
+*   @param name the name of the regex.
+*   @param regex the regex itself.
+*   @param example the example of that regex.
+*   @return a bool flag that indicates if there's error or not.
 */
 bool XpressrService::Interfaces::Regex::SetRegex(const std::string& name, const std::string& regex, const std::string& example)
 {
     LOG(INFO, "SetRegex method called");
-    if (!this->dbManager.set(name, regex, example)) {
+
+    try {
+        this->dbManager.set(name, regex, example);
         return true;
+    } catch (std::exception& e) {
+        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
+        LOG(ERROR, "There was an error setting a Regex");
     }
 
-    LOG(ERROR, "There was an error setting a Regex");
     return false;
 }
 
 /**
-    Updates a Regex.
-    @param id the id of the regex.
-    @param name the name of the regex.
-    @param regex the regex itself.
-    @param example the example of that regex.
-    @return a bool flag that indicates if there's error or not.
+**  Updates a Regex.
+*   @param id the id of the regex.
+*   @param name the name of the regex.
+*   @param regex the regex itself.
+*   @param example the example of that regex.
+*   @return a bool flag that indicates if there's error or not.
 */
 bool XpressrService::Interfaces::Regex::UpdateRegex(const int32_t& id, const std::string& name, const std::string& regex, const std::string& example)
 {
     LOG(INFO, "UpdateRegex method called");
-    if (!this->dbManager.update(id, name, regex, example)) {
-        return true;
+    if (this->dbManager.exists(id)) {
+        try {
+            this->dbManager.update(id, name, regex, example);
+            return true;
+        } catch (std::exception& e) {
+            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
+            LOG(ERROR, "There was an error updating a Regex");
+        }
     }
 
-    LOG(ERROR, "There was an error updating a Regex");
+    throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", "There's no Regex that matches with the given Id");
     return false;
 }
 
 /**
-    Deletes a Regex according to its id.
-    @param id the id of the regex.
-    @return a bool flag that indicates if there's error or not.
-    TODO: Improve logic.
+**  Deletes a Regex according to its id.
+*   @param id the id of the regex.
+*   @return a bool flag that indicates if there's error or not.
 */
 bool XpressrService::Interfaces::Regex::DeleteRegex(const int32_t& id)
 {
     LOG(INFO, "DeleteRegex method called");
     if (this->dbManager.exists(id)) {
-        LOG(INFO, "The given ID exists");
-        if (!this->dbManager.remove(id)) {
+        try {
+            this->dbManager.remove(id);
             return true;
+        } catch (std::exception& e) {
+            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
+            LOG(ERROR, "There was an error deleting a Regex");
         }
-
-        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", "An error ocurred when deleting the regex");
-        return false;
     }
 
     throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", "There's no Regex that matches with the given Id");

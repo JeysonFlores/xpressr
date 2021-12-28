@@ -9,7 +9,7 @@ namespace XpressrService {
 namespace Services {
     class DataManager {
     public:
-        DataManager(const char* database_path);
+        DataManager(const char* databasePath);
         ~DataManager();
 
     private:
@@ -18,9 +18,9 @@ namespace Services {
     public:
         //void getAll();
         sdbus::Struct<int32_t, std::string, std::string, std::string> getById(int id);
-        bool set(std::string name, std::string regex, std::string example);
-        bool update(int id, std::string name, std::string regex, std::string example);
-        bool remove(int id);
+        void set(std::string name, std::string regex, std::string example);
+        void update(int id, std::string name, std::string regex, std::string example);
+        void remove(int id);
         bool exists(int id);
     };
 }
