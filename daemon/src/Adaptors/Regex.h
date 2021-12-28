@@ -16,7 +16,7 @@ namespace Adaptors {
         Regex(sdbus::IObject& object)
             : object_(object)
         {
-            object_.registerMethod("GetRegexes").onInterface(INTERFACE_NAME).withOutputParamNames("regexes").implementedAs([this](){ return this->GetRegexes(); });
+            object_.registerMethod("GetRegexes").onInterface(INTERFACE_NAME).withOutputParamNames("regexes").implementedAs([this]() { return this->GetRegexes(); });
             object_.registerMethod("GetRegexById").onInterface(INTERFACE_NAME).withInputParamNames("id").withOutputParamNames("regex").implementedAs([this](const int32_t& id) { return this->GetRegexById(id); });
             object_.registerMethod("SetRegex").onInterface(INTERFACE_NAME).withInputParamNames("name", "regex", "example").withOutputParamNames("was_completed").implementedAs([this](const std::string& name, const std::string& regex, const std::string& example) { return this->SetRegex(name, regex, example); });
             object_.registerMethod("UpdateRegex").onInterface(INTERFACE_NAME).withInputParamNames("id", "name", "regex", "example").withOutputParamNames("was_completed").implementedAs([this](const int32_t& id, const std::string& name, const std::string& regex, const std::string& example) { return this->UpdateRegex(id, name, regex, example); });
