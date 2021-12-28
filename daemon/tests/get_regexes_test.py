@@ -1,7 +1,6 @@
-import gi
-gi.require_version('Gtk', '3.0')
+# get_regexes_test.py
+#* Test of com.github.jeysonflores.Regex => GetRegexes()
 
-from gi.repository import Gtk
 import dbus
 
 def main():
