@@ -26,5 +26,5 @@ void Logger::LOG(Logger::LoggerLevel level, const std::string& message)
         code = "\u001b[30;1mNO SPECIFIED\u001b[0m";
     }
 
-    std::cout << "\u001b[33;1m[" << std::put_time(&time, "%c %Z") << "]\u001b[0m - " << code << " - " << message << std::endl;
+    std::cout << "\u001b[33;1m[" << std::put_time(&time, "%c %Z") << "]\u001b[0m - " << code << " - " << message << "\n";
 }
