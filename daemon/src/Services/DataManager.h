@@ -21,6 +21,7 @@ namespace Services {
         bool set(std::string name, std::string regex, std::string example);
         bool update(int id, std::string name, std::string regex, std::string example);
         bool remove(int id);
+        bool exists(int id);
     };
 }
 }
