@@ -8,7 +8,6 @@
 
 INIT_LOGGER;
 
-//TODO: Implement getAll method
 namespace XpressrService {
 namespace Interfaces {
 

@@ -4,7 +4,6 @@
 #include <string>
 #include <tuple>
 
-//TODO: Implement getAll method
 namespace XpressrService {
 namespace Adaptors {
 

@@ -4,7 +4,6 @@
 #include <sdbus-c++/sdbus-c++.h>
 #include <sqlite_modern_cpp.h>
 
-//TODO: Implement getAll method
 namespace XpressrService {
 namespace Services {
     class DataManager {

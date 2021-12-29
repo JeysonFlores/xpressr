@@ -1,4 +1,3 @@
-// TODO: Implement a way to return all the Regexes template
 #include "Regex.h"
 
 /**
