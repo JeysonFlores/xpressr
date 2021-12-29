@@ -2,4 +2,5 @@ build
 builddir
 daemon/build
 daemon/builddir
+daemon/tests/bin
 .flatpak-builder
