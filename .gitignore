@@ -3,4 +3,6 @@ builddir
 daemon/build
 daemon/builddir
 daemon/tests/bin
+daemon/tests/vala/build
+daemon/tests/vala/.xmake
 .flatpak-builder

@@ -6,6 +6,10 @@ project('com.github.jeysonflores.xpressrService', ['cpp', 'c'],
                    ],
 )
 
+install_data(
+    'data/' + meson.project_name() + '.service',
+    install_dir: join_paths(get_option('datadir'), 'dbus-1/services')
+)
 
 executable(
       meson.project_name(),
