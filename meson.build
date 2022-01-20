@@ -20,6 +20,11 @@ c_args = [
 executable(
     'com.github.jeysonflores.switcher',
     'src/Xpressr.vala',
+    'src/MainWindow.vala',
+    'src/Widgets/RegexItem.vala',
+    'src/Widgets/HeaderBar.vala',
+    'src/Interfaces/Regex.vala',
+    'src/Models/Regex.vala',
     c_args: c_args,
     dependencies: [
         dependency('glib-2.0'),
