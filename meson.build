@@ -17,8 +17,9 @@ c_args = [
   '-include', 'config.h'
 ]
 
+
 executable(
-    'com.github.jeysonflores.switcher',
+    'com.github.jeysonflores.xpressr',
     'src/Xpressr.vala',
     'src/MainWindow.vala',
     'src/Widgets/RegexItem.vala',
@@ -37,3 +38,4 @@ executable(
     install : true
 )
 
+subdir('data')
