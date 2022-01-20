@@ -18,3 +18,13 @@ jobs:
           extensions: 'h,cpp'
           clangFormatVersion: 10
           style: WebKit
+          
+  Vala-Lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    container:
+      image: valalang/lint
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint
+      run: io.elementary.vala-lint -d .
