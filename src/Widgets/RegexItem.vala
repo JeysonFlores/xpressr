@@ -1,7 +1,7 @@
 class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
 
-    public string regex_name { get; construct; } 
-    public string regex { get; construct; } 
+    public string regex_name { get; construct; }
+    public string regex { get; construct; }
 
     public RegexItem (string name, string regex) {
         Object (

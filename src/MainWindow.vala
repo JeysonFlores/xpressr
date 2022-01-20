@@ -39,7 +39,7 @@ class Xpressr.MainWindow : Hdy.Window {
             regex_interface = Bus.get_proxy_sync (BusType.SESSION, "com.github.jeysonflores.xpressrService",
                                                                 "/com/github/jeysonflores/xpressrService/Regex");
 
-            var regexes = regex_interface.get_regexes();
+            var regexes = regex_interface.get_regexes ();
 
             foreach (var regex in regexes) {
                 var new_regex = new Xpressr.Widgets.RegexItem (regex.name, regex.regex);

@@ -13,7 +13,7 @@ class Xpressr.Widgets.HeaderBar : Gtk.Grid {
         };
         left_header.get_style_context ().add_class ("flat");
 
-        print("a");
+        print ("a");
 
         var add_button = new Gtk.Button.with_label ("Add Regex") {
             image = new Gtk.Image.from_icon_name ("ionicons-add-circle-symbolic", Gtk.IconSize.BUTTON),
