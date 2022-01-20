@@ -1,6 +1,6 @@
 class Xpressr.MainWindow : Hdy.Window {
 
-    private Xpressr.Interfaces.Regex regex_interface  = null;
+    private Xpressr.Interfaces.Regex regex_interface = null;
 
     public MainWindow (Gtk.Application application) {
         Object (
@@ -21,7 +21,6 @@ class Xpressr.MainWindow : Hdy.Window {
 
         var list_box = new Gtk.ListBox () {
             expand = true,
-            
         };
 
         this.initialize_dbus (list_box);
@@ -41,9 +40,9 @@ class Xpressr.MainWindow : Hdy.Window {
                                                                 "/com/github/jeysonflores/xpressrService/Regex");
 
             var regexes = regex_interface.get_regexes();
-            
+
             foreach (var regex in regexes) {
-                var new_regex = new Xpressr.Widgets.RegexItem(regex.name, regex.regex);
+                var new_regex = new Xpressr.Widgets.RegexItem (regex.name, regex.regex);
 
                 list.insert (new_regex, 0);
             }
