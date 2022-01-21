@@ -31,8 +31,8 @@ std::vector<sdbus::Struct<int32_t, std::string, std::string, std::string>> Xpres
     try {
         return this->dbManager.getAll();
     } catch (std::exception& e) {
-        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
         LOG(ERROR, "There was an error retrieving all Regexes");
+        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
     }
 }
 
@@ -48,8 +48,8 @@ sdbus::Struct<int32_t, std::string, std::string, std::string> XpressrService::In
         try {
             return this->dbManager.getById(id);
         } catch (std::exception& e) {
-            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
             LOG(ERROR, "There was an error retrieving a Regex");
+            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
         }
     }
 
@@ -72,8 +72,8 @@ bool XpressrService::Interfaces::Regex::SetRegex(const std::string& name, const 
         this->emitRegexAdded(id, name, regex, example);
         return true;
     } catch (std::exception& e) {
-        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
         LOG(ERROR, "There was an error setting a Regex");
+        throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
     }
 
     return false;
@@ -96,8 +96,8 @@ bool XpressrService::Interfaces::Regex::UpdateRegex(const int32_t& id, const std
             this->emitRegexUpdated(id, name, regex, example);
             return true;
         } catch (std::exception& e) {
-            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
             LOG(ERROR, "There was an error updating a Regex");
+            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
         }
     }
 
@@ -119,8 +119,8 @@ bool XpressrService::Interfaces::Regex::DeleteRegex(const int32_t& id)
             this->emitRegexDeleted(id);
             return true;
         } catch (std::exception& e) {
-            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
             LOG(ERROR, "There was an error deleting a Regex");
+            throw sdbus::Error("com.github.jeysonflores.xpressrService.Error", e.what());
         }
     }
 
