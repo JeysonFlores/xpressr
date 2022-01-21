@@ -3,6 +3,8 @@ project('com.github.jeysonflores.xpressr', ['vala', 'c'],
     license: 'GPL-3.0'
 )
 
+gnome = import('gnome')
+
 add_project_arguments(
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     language: 'c'
@@ -17,6 +19,11 @@ c_args = [
   '-include', 'config.h'
 ]
 
+asresources = gnome.compile_resources(
+    'as-resources', 'data/assets.gresource.xml',
+    source_dir: 'data',
+    c_name: 'as'
+)
 
 executable(
     'com.github.jeysonflores.xpressr',
@@ -26,6 +33,7 @@ executable(
     'src/Widgets/HeaderBar.vala',
     'src/Interfaces/Regex.vala',
     'src/Models/Regex.vala',
+    asresources,
     c_args: c_args,
     dependencies: [
         dependency('glib-2.0'),
