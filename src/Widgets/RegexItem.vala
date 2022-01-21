@@ -38,7 +38,8 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         inner_box.pack_start (regex_label, true, true, 0);
 
         var copy_button = new Gtk.Button.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.BUTTON) {
-            can_focus = false
+            can_focus = false,
+            halign = Gtk.Align.END
         };
         copy_button.get_style_context ().add_class ("flat");
 
