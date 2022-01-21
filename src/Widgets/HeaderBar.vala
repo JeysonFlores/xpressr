@@ -39,7 +39,7 @@ class Xpressr.Widgets.HeaderBar : Gtk.Grid {
         title_box.add (right_header);
 
         this.get_style_context ().add_class ("header-background");
-        
+
         this.add (title_box);
     }
 }
