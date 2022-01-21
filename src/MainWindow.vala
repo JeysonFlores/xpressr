@@ -32,6 +32,16 @@ class Xpressr.MainWindow : Hdy.Window {
         main_grid.add (scw);
 
         this.add (main_grid);
+
+        //TODO: This doesn't work (for some reason)
+        this.regex_interface.regex_added.connect ((id, name, regex, example) => {
+            print ("Regex added called...\n");
+            Xpressr.Models.Regex new_regex_data = { id, name, regex, example };
+
+            var new_regex = new Xpressr.Widgets.RegexItem (new_regex_data, this.regex_interface);
+
+            list_box.insert (new_regex, 0);
+        });
     }
 
     private void initialize_dbus (Gtk.ListBox list) {
@@ -42,7 +52,7 @@ class Xpressr.MainWindow : Hdy.Window {
             var regexes = regex_interface.get_regexes ();
 
             foreach (var regex in regexes) {
-                var new_regex = new Xpressr.Widgets.RegexItem (regex.name, regex.regex);
+                var new_regex = new Xpressr.Widgets.RegexItem (regex, regex_interface);
 
                 list.insert (new_regex, 0);
             }

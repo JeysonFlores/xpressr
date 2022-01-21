@@ -12,7 +12,6 @@ INIT_LOGGER;
 
 int main(int /*argc*/, char* /*argv*/[])
 {
-
     auto connection = sdbus::createSessionBusConnection("com.github.jeysonflores.xpressrService");
 
     LOG(SUCCESS, "Name requested successfully...");

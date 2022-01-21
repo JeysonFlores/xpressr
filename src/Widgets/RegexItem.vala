@@ -1,12 +1,12 @@
 class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
 
-    public string regex_name { get; construct; }
-    public string regex { get; construct; }
+    public Xpressr.Models.Regex regex { get; construct; }
+    public Xpressr.Interfaces.Regex iface { get; construct; }
 
-    public RegexItem (string name, string regex) {
+    public RegexItem (Xpressr.Models.Regex regex, Xpressr.Interfaces.Regex iface) {
         Object (
-            regex_name: name,
             regex: regex,
+            iface: iface,
             margin_bottom: 5,
             margin_top: 5
         );
@@ -22,12 +22,12 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
             hexpand = true
         };
 
-        var name_label = new Gtk.Label (this.regex_name) {
+        var name_label = new Gtk.Label (this.regex.name) {
             ellipsize = Pango.EllipsizeMode.END
         };
         name_label.get_style_context ().add_class ("h2");
 
-        var regex_label = new Gtk.Label (this.regex) {
+        var regex_label = new Gtk.Label (this.regex.regex) {
             ellipsize = Pango.EllipsizeMode.END,
             margin_bottom = 5
         };
@@ -46,5 +46,22 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         upper_box.pack_start (copy_button, true, true, 0);
 
         this.add (upper_box);
+
+        this.iface.regex_updated.connect ((id, name, regex, example) => {
+            if (id == this.regex.id) {
+                this.regex.name = name;
+                this.regex.regex = regex;
+                this.regex.example = example;
+
+                name_label.label = name;
+                regex_label.label = regex;
+            }
+        });
+
+        this.iface.regex_deleted.connect ((id) => {
+            if (id == this.regex.id) {
+                this.destroy ();
+            }
+        });
     }
 }
