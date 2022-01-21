@@ -6,3 +6,4 @@ daemon/tests/bin
 daemon/tests/vala/build
 daemon/tests/vala/.xmake
 .flatpak-builder
+.ccls-cache
