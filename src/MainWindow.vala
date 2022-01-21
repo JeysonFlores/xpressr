@@ -35,7 +35,6 @@ class Xpressr.MainWindow : Hdy.Window {
 
         //TODO: This doesn't work (for some reason)
         this.regex_interface.regex_added.connect ((id, name, regex, example) => {
-            print ("Regex added called...\n");
             Xpressr.Models.Regex new_regex_data = { id, name, regex, example };
 
             var new_regex = new Xpressr.Widgets.RegexItem (new_regex_data, this.regex_interface);
