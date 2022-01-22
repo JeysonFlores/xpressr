@@ -30,6 +30,7 @@ executable(
     'src/Xpressr.vala',
     'src/MainWindow.vala',
     'src/Widgets/RegexItem.vala',
+    'src/Widgets/RegexItemMenu.vala',
     'src/Widgets/HeaderBar.vala',
     'src/Interfaces/Regex.vala',
     'src/Models/Regex.vala',

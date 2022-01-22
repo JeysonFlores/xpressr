@@ -3,6 +3,8 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
     public Xpressr.Models.Regex regex { get; construct; }
     public Xpressr.Interfaces.Regex iface { get; construct; }
 
+    public signal void popover_opened (Xpressr.Widgets.RegexItem item);
+
     public RegexItem (Xpressr.Models.Regex regex, Xpressr.Interfaces.Regex iface) {
         Object (
             regex: regex,
@@ -19,17 +21,19 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         };
 
         var inner_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 5) {
-            hexpand = true
+            hexpand = true,
+            halign = Gtk.Align.END
         };
 
         var name_label = new Gtk.Label (this.regex.name) {
-            ellipsize = Pango.EllipsizeMode.END
+            ellipsize = Pango.EllipsizeMode.END,
+            margin_top = 10
         };
         name_label.get_style_context ().add_class ("h2");
 
         var regex_label = new Gtk.Label (this.regex.regex) {
             ellipsize = Pango.EllipsizeMode.END,
-            margin_bottom = 5
+            margin_bottom = 10
         };
         regex_label.get_style_context ().add_class ("h3");
         regex_label.get_style_context ().add_class ("dim-label");
@@ -37,7 +41,7 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         inner_box.pack_start (name_label, true, true, 0);
         inner_box.pack_start (regex_label, true, true, 0);
 
-        var copy_button = new Gtk.Button.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.BUTTON) {
+        var copy_button = new Gtk.Button.from_icon_name ("feathericons-list-symbolic", Gtk.IconSize.BUTTON) {
             can_focus = false,
             halign = Gtk.Align.END
         };
@@ -47,6 +51,13 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         upper_box.pack_start (copy_button, true, true, 0);
 
         this.add (upper_box);
+
+        copy_button.clicked.connect (() => {
+            this.popover_opened (this);
+
+            var popover = new Xpressr.Widgets.RegexItemMenu (copy_button, this);
+            popover.show_all ();
+        });
 
         this.iface.regex_updated.connect ((id, name, regex, example) => {
             if (id == this.regex.id) {

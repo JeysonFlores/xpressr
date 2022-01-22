@@ -20,8 +20,23 @@ class Xpressr.MainWindow : Hdy.Window {
         var header = new Xpressr.Widgets.HeaderBar ();
 
         var list_box = new Gtk.ListBox () {
+            activate_on_single_click = false,
+            selection_mode = Gtk.SelectionMode.SINGLE,
             expand = true,
         };
+        list_box.set_placeholder (new Gtk.Label ("No hay Regexes"));
+        list_box.row_activated.connect ((row) => {
+            print ("Row activated from outer scope\n");
+        });
+
+        list_box.row_selected.connect ((row) => {
+            var regex_activated = row as Xpressr.Widgets.RegexItem;
+            print(regex_activated.regex.name);
+            print("\n");
+            print(regex_activated.regex.regex);
+            print("\n");
+            print ("Row selected from outer scope\n");
+        });
 
         this.initialize_dbus (list_box);
 
@@ -52,6 +67,9 @@ class Xpressr.MainWindow : Hdy.Window {
 
             foreach (var regex in regexes) {
                 var new_regex = new Xpressr.Widgets.RegexItem (regex, regex_interface);
+                new_regex.popover_opened.connect ((row) => {
+                    list.select_row (row);
+                });
 
                 list.insert (new_regex, 0);
             }
