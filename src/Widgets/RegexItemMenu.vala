@@ -44,7 +44,7 @@ class Xpressr.Widgets.RegexItemMenu : Gtk.Popover {
         });
 
         delete_regex_button.clicked.connect (() => {
-            try{
+            try {
                 this.item.iface.delete_regex (this.item.regex.id);
             } catch (GLib.Error e) {
                 warning ("⚠️ Error trying delete the given regex: [%s]\n", e.message);

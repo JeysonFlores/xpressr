@@ -31,10 +31,10 @@ class Xpressr.MainWindow : Hdy.Window {
 
         list_box.row_selected.connect ((row) => {
             var regex_activated = row as Xpressr.Widgets.RegexItem;
-            print(regex_activated.regex.name);
-            print("\n");
-            print(regex_activated.regex.regex);
-            print("\n");
+            print (regex_activated.regex.name);
+            print ("\n");
+            print (regex_activated.regex.regex);
+            print ("\n");
             print ("Row selected from outer scope\n");
         });
 
