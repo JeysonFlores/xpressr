@@ -14,7 +14,7 @@ class Xpressr.Widgets.HeaderBar : Gtk.Grid {
         left_header.get_style_context ().add_class ("flat");
 
         var add_button = new Gtk.Button.with_label ("Add Regex") {
-            image = new Gtk.Image.from_icon_name ("feathericons-plus-square-symbolic", Gtk.IconSize.BUTTON),
+            image = new Gtk.Image.from_icon_name ("ionicons-add-circle-symbolic", Gtk.IconSize.BUTTON),
             always_show_image = true,
             halign = Gtk.Align.END,
             hexpand = true

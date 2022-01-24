@@ -49,8 +49,6 @@ class Xpressr.Widgets.RegexItemMenu : Gtk.Popover {
             } catch (GLib.Error e) {
                 warning ("⚠️ Error trying delete the given regex: [%s]\n", e.message);
             }
-
-            this.destroy ();
         });
     }
 }

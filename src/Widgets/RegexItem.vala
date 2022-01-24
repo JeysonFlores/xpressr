@@ -41,7 +41,7 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         inner_box.pack_start (name_label, true, true, 0);
         inner_box.pack_start (regex_label, true, true, 0);
 
-        var copy_button = new Gtk.Button.from_icon_name ("feathericons-list-symbolic", Gtk.IconSize.BUTTON) {
+        var copy_button = new Gtk.Button.from_icon_name ("ionicons-options-symbolic", Gtk.IconSize.BUTTON) {
             can_focus = false,
             halign = Gtk.Align.END
         };
