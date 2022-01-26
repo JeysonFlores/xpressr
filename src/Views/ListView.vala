@@ -1,4 +1,4 @@
-class Xpressr.Views.ListView : Gtk.Grid {
+class Xpressr.Views.ListView : Gtk.Overlay {
 
     public Xpressr.Interfaces.Regex? regex_interface { get; construct; }
     public signal void create_new_regex ();
@@ -11,9 +11,13 @@ class Xpressr.Views.ListView : Gtk.Grid {
     }
 
     construct {
-        this.column_homogeneous = true;
-        this.expand = true;
-        this.orientation = Gtk.Orientation.VERTICAL;
+        var main_grid = new Gtk.Grid () {
+            column_homogeneous = true,
+            expand = true,
+            orientation = Gtk.Orientation.VERTICAL
+        };
+
+        var toast = new Granite.Widgets.Toast (_("Regex was copied!"));
         /* Header construction */
         var left_header = new Hdy.HeaderBar () {
             decoration_layout = "close:",
@@ -50,7 +54,10 @@ class Xpressr.Views.ListView : Gtk.Grid {
 
         header_grid.get_style_context ().add_class ("header-background");
 
-        this.add (header_grid);
+        main_grid.add (header_grid);
+
+        add_overlay (main_grid);
+        add_overlay (toast);
 
         /* Body construction */
         var list_box = new Gtk.ListBox () {
@@ -66,6 +73,7 @@ class Xpressr.Views.ListView : Gtk.Grid {
             foreach (var regex in regexes) {
                 var new_regex = new Xpressr.Widgets.RegexItem (regex, regex_interface);
                 new_regex.regex_copied.connect ((row) => {
+                    toast.send_notification ();
                     list_box.select_row (row);
                 });
 
@@ -78,7 +86,7 @@ class Xpressr.Views.ListView : Gtk.Grid {
         var scw = new Gtk.ScrolledWindow (null, null);
         scw.add (list_box);
 
-        this.add (scw);
+        main_grid.add (scw);
 
         /* Signal handling */
         add_button.clicked.connect (() => {
