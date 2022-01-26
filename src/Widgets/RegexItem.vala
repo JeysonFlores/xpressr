@@ -3,7 +3,7 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
     public Xpressr.Models.Regex regex { get; construct; }
     public Xpressr.Interfaces.Regex iface { get; construct; }
 
-    public signal void popover_opened (Xpressr.Widgets.RegexItem item);
+    public signal void regex_copied (Xpressr.Widgets.RegexItem item);
 
     public RegexItem (Xpressr.Models.Regex regex, Xpressr.Interfaces.Regex iface) {
         Object (
@@ -41,7 +41,7 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         inner_box.pack_start (name_label, true, true, 0);
         inner_box.pack_start (regex_label, true, true, 0);
 
-        var copy_button = new Gtk.Button.from_icon_name ("ionicons-options-symbolic", Gtk.IconSize.BUTTON) {
+        var copy_button = new Gtk.Button.from_icon_name ("edit-copy-symbolic", Gtk.IconSize.BUTTON) {
             can_focus = false,
             halign = Gtk.Align.END
         };
@@ -53,10 +53,7 @@ class Xpressr.Widgets.RegexItem : Gtk.ListBoxRow {
         this.add (upper_box);
 
         copy_button.clicked.connect (() => {
-            this.popover_opened (this);
-
-            var popover = new Xpressr.Widgets.RegexItemMenu (copy_button, this);
-            popover.show_all ();
+            this.regex_copied (this);
         });
 
         this.iface.regex_updated.connect ((id, name, regex, example) => {

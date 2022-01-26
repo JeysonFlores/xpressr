@@ -1,5 +1,5 @@
 symbolic_icons = ['ionicons-add-circle', 'ionicons-grid',
-                    'feathericons-list', 'feathericons-plus-square']
+                    'ionicons-copy', 'feathericons-plus-square']
 
 foreach i : symbolic_icons
     install_data(
