@@ -6,6 +6,7 @@ on: [push, pull_request]
 jobs:
         
   Cpp-Lint-WebKit:
+      name: C++ lint
       runs-on: ubuntu-latest
       
       steps:
@@ -20,7 +21,7 @@ jobs:
           style: WebKit
 
   Vala-Lint:
-    name: Vala-Lint
+    name: Vala lint
     runs-on: ubuntu-latest
     container:
       image: valalang/lint
